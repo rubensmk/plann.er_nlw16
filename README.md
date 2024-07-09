@@ -1,4 +1,8 @@
-# React + TypeScript + Vite
+# Plann.er NLW 16
+
+![image](https://github.com/rubensmk/plann.er_nlw16/assets/52255226/d5942f78-efbd-4c40-a19f-7b4d7e900fe7)
+![image](https://github.com/rubensmk/plann.er_nlw16/assets/52255226/6e780118-b309-4474-bbb0-da5a502f9e37)
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
