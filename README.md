@@ -1,7 +1,15 @@
 # Plann.er NLW 16
 
-![image](https://github.com/rubensmk/plann.er_nlw16/assets/52255226/d5942f78-efbd-4c40-a19f-7b4d7e900fe7)
-![image](https://github.com/rubensmk/plann.er_nlw16/assets/52255226/6e780118-b309-4474-bbb0-da5a502f9e37)
+Projeto desenvolvido na NLW Journey da Rocketseat, um app planner de viagens feito criado em ReactJS com Vite utilizando:
+- Tailwind CSS
+- Tailwind Variants
+- React Day Picker
+- Lucide React
+
+![image](https://github.com/rubensmk/plann.er_nlw16/assets/52255226/43a78f20-e28f-4ef3-b1c3-c99b8d18cd50)
+![image](https://github.com/rubensmk/plann.er_nlw16/assets/52255226/e85dfbc4-1157-41da-ad2c-038accc84f05)
+![image](https://github.com/rubensmk/plann.er_nlw16/assets/52255226/faacd85a-2b68-4e31-b474-f12abad1932f)
+![image](https://github.com/rubensmk/plann.er_nlw16/assets/52255226/3bf0c916-26af-46bd-b74c-92cafe2b0f18)
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
