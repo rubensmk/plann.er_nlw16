@@ -10,6 +10,7 @@ import { api } from "../../lib/axios";
 export function CreateTripPage() {
     const navigate = useNavigate();
     const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [isGuestsModalOpen, setIsModalInputOpen] = useState(false);
     const [isConfirmTripModalOpen, setIsConfirmTripModalOpen] = useState(false);
 
@@ -74,30 +75,31 @@ export function CreateTripPage() {
     async function createTrip(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
-        if (!destination || !ownerName || !ownerEmail) {
+        if (!destination || !ownerName || !ownerEmail || !eventRangeDates?.from || !eventRangeDates?.to || emailsToInvite.length === 0) {
             return
         }
 
-        if (!eventRangeDates?.from || !eventRangeDates?.to) {
-            return
+        setIsLoading(true)
+
+        try {
+            const response = await api.post('/trips', {
+                destination,
+                starts_at: eventRangeDates.from,
+                ends_at: eventRangeDates.to,
+                emails_to_invite: emailsToInvite,
+                owner_name: ownerName,
+                owner_email: ownerEmail,
+            })
+
+            const { tripId } = response.data
+
+            navigate(`/trips/${tripId}`)
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setIsLoading(false)
         }
 
-        if (emailsToInvite.length === 0) {
-            return
-        }
-
-        const response = await api.post('/trips', {
-            destination,
-            starts_at: eventRangeDates.from,
-            ends_at: eventRangeDates.to,
-            emails_to_invite: emailsToInvite,
-            owner_name: ownerName,
-            owner_email: ownerEmail,
-        })
-
-        const { tripId } = response.data
-
-        navigate(`/trips/${tripId}`)
     }
 
     return (
@@ -141,7 +143,7 @@ export function CreateTripPage() {
                 />
             )}
 
-            {isConfirmTripModalOpen && <ConfirmTripModal setOwnerName={setOwnerName} setOwnerEmail={setownerEmail} closeConfirmTripModal={closeConfirmTripModal} createTrip={createTrip} />}
+            {isConfirmTripModalOpen && <ConfirmTripModal isLoading={isLoading} setOwnerName={setOwnerName} setOwnerEmail={setownerEmail} closeConfirmTripModal={closeConfirmTripModal} createTrip={createTrip} />}
         </div >
     )
 }

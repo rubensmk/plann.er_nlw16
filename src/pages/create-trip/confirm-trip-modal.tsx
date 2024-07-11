@@ -1,15 +1,16 @@
-import { Mail, User, X } from "lucide-react";
+import { Loader, Mail, User, X } from "lucide-react";
 import { FormEvent } from "react";
 import { Button } from "../../components/button";
 
 interface ConfirmTripModalProps {
+    isLoading: boolean;
     closeConfirmTripModal: () => void;
     createTrip: (event: FormEvent<HTMLFormElement>) => void;
     setOwnerName: (name: string) => void;
     setOwnerEmail: (email: string) => void;
 }
 
-export function ConfirmTripModal({ closeConfirmTripModal, createTrip, setOwnerName, setOwnerEmail }: ConfirmTripModalProps) {
+export function ConfirmTripModal({ closeConfirmTripModal, createTrip, setOwnerName, setOwnerEmail, isLoading }: ConfirmTripModalProps) {
     return (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
             <div className="w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
@@ -40,7 +41,14 @@ export function ConfirmTripModal({ closeConfirmTripModal, createTrip, setOwnerNa
                     </div>
 
                     <Button type="submit" size="full">
-                        Confirmar criação da viagem
+                        {isLoading ? (
+                            <div className="flex items-center gap-2">
+                                <span>Confirmando...</span>
+                                <Loader className="size-5" />
+                            </div>
+                        ) : (
+                            <span>Confirmar criação da viagem</span>
+                        )}
                     </Button>
                 </form>
             </div>
